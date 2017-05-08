@@ -30,6 +30,7 @@ export default class BaseLayout extends React.Component {
     let Row = getComponent("Row")
     let Col = getComponent("Col")
     let Errors = getComponent("errors", true)
+    let Navigation = getComponent("navigation", true)
     const Schemes = getComponent("schemes")
 
     const isSpecEmpty = !specSelectors.specStr()
@@ -41,40 +42,41 @@ export default class BaseLayout extends React.Component {
     return (
 
       <div className='swagger-ui'>
-          <div>
-            <Errors/>
-            <Row className="information-container">
-              <Col mobile={12}>
-                { info.count() ? (
-                  <Info info={ info } url={ url } host={ host } basePath={ basePath } externalDocs={externalDocs} getComponent={getComponent}/>
+        <Navigation/>
+        <div className="swagger-main-content">
+          <Errors/>
+          <Row className="information-container">
+            <Col mobile={12}>
+              { info.count() ? (
+                <Info info={ info } url={ url } host={ host } basePath={ basePath } externalDocs={externalDocs} getComponent={getComponent}/>
+              ) : null }
+            </Col>
+          </Row>
+          { schemes && schemes.size || securityDefinitions ? (
+            <div className="scheme-container">
+              <Col className="schemes wrapper" mobile={12}>
+                { schemes && schemes.size ? (
+                  <Schemes schemes={ schemes } specActions={ specActions } />
+                ) : null }
+                { securityDefinitions ? (
+                  <AuthorizeBtn />
                 ) : null }
               </Col>
-            </Row>
-            { schemes && schemes.size || securityDefinitions ? (
-              <div className="scheme-container">
-                <Col className="schemes wrapper" mobile={12}>
-                  { schemes && schemes.size ? (
-                    <Schemes schemes={ schemes } specActions={ specActions } />
-                  ) : null }
-                  { securityDefinitions ? (
-                    <AuthorizeBtn />
-                  ) : null }
-                </Col>
-              </div>
-            ) : null }
+            </div>
+          ) : null }
 
-            <Row>
-              <Col mobile={12} desktop={12} >
-                <Operations/>
-              </Col>
-            </Row>
-            <Row>
-              <Col mobile={12} desktop={12} >
-                <Models/>
-              </Col>
-            </Row>
-          </div>
+          <Row>
+            <Col mobile={12} desktop={12} >
+              <Operations/>
+            </Col>
+          </Row>
+          <Row>
+            <Col mobile={12} desktop={12} >
+              <Models/>
+            </Col>
+          </Row>
         </div>
+      </div>
       )
   }
 }

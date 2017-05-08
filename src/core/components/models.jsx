@@ -19,7 +19,7 @@ export default class Models extends Component {
 
     if (!definitions.size) return null
 
-    return <section className={ showModels ? "models is-open" : "models"}>
+    return <section className={ showModels ? "models is-open" : "models"} id="models">
       <h4 onClick={() => layoutActions.show("models", !showModels)}>
         <span>Models</span>
         <svg width="20" height="20">

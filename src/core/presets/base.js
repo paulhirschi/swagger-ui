@@ -45,6 +45,7 @@ import ModelExample from "core/components/model-example"
 import Model from "core/components/model"
 import Models from "core/components/models"
 import TryItOutButton from "core/components/try-it-out-button"
+import Navigation from "core/components/navigation"
 
 import BaseLayout from "core/components/layouts/base"
 
@@ -89,6 +90,7 @@ export default function() {
       model: Model,
       models: Models,
       TryItOutButton,
+      navigation: Navigation,
       BaseLayout
     }
   }
