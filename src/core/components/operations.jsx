@@ -46,7 +46,7 @@ export default class Operations extends React.Component {
               let showTag = layoutSelectors.isShown(isShownKey, true)
 
               return (
-                <div className={showTag ? "opblock-tag-section is-open" : "opblock-tag-section"} key={"operation-" + tag}>
+                <div className={showTag ? "opblock-tag-section is-open" : "opblock-tag-section", tag === "CORS" ? "hidden" : ""} key={"operation-" + tag}>
 
                   <h4 className={!tagDescription ? "opblock-tag no-desc" : "opblock-tag"} id={tag}>
                     <span onClick={() => layoutActions.show(isShownKey, !showTag)}>{tag}</span>

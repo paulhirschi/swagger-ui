@@ -47,7 +47,7 @@ export default class Navigation extends React.Component {
               let showTag = layoutSelectors.isShown(isShownKey, true)
 
               return (
-                    <a href={'#' + tag} key={"navigation-" + tag}>{tag}</a>
+                    <a href={'#' + tag} className={tag === "CORS" ? "hidden" : ""} key={"navigation-" + tag}>{tag}</a>
                   
                 )
             }).toArray()

@@ -41,7 +41,7 @@ export default class BaseLayout extends React.Component {
 
     return (
 
-      <div className='swagger-ui'>
+      <div className='swagger-ui flex-container'>
         <Navigation/>
         <div className="swagger-main-content">
           <Errors/>
