@@ -18,7 +18,8 @@ export default class ApiKeyAuth extends React.Component {
     this.state = {
       name: name,
       schema: schema,
-      value: value
+      value: value,
+      show: false
     }
   }
 
@@ -48,8 +49,9 @@ export default class ApiKeyAuth extends React.Component {
     let value = this.getValue()
     let errors = errSelectors.allErrors().filter( err => err.get("authId") === name)
 
-    return (
-      <div>
+    let element = null
+    if(schema.get("name") !== 'Authorization') {
+      element = <div>
         <h4>Api key authorization<JumpToPath path={[ "securityDefinitions", name ]} /></h4>
         { value && <h6>Authorized</h6>}
         <Row>
@@ -75,6 +77,14 @@ export default class ApiKeyAuth extends React.Component {
                               key={ key }/>
           } )
         }
+      </div>
+    } else {
+      element = <div></div>
+    }
+
+    return (
+      <div>
+      {element}
       </div>
     )
   }

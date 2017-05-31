@@ -56,6 +56,7 @@ export default class Auths extends React.Component {
 
     let nonOauthDefinitions = definitions.filter( schema => schema.get("type") !== "oauth2")
     let oauthDefinitions = definitions.filter( schema => schema.get("type") === "oauth2")
+    let goodSchemaName = definitions.find( schema => schema.get("name") !== 'Authorization')
 
     return (
       <div className="auth-container">
@@ -93,10 +94,19 @@ export default class Auths extends React.Component {
               }).toArray()
             }
             <div className="auth-btn-wrapper">
+            {// var condition1 = true,
+            //     condition2 = false,
+            //     access = condition1 ? condition2 ? "Full pie": "Half pie": condition2 ? "Half pie" : "No pie, don't cry" ;
+
+            // console.log(access); // logs "Half pie"
+          }
+            { goodSchemaName ? <div>
               {
                 nonOauthDefinitions.size === authorizedAuth.size ? <Button className="btn modal-btn auth" onClick={ this.logoutClick }>Logout</Button>
               : <Button type="submit" className="btn modal-btn auth authorize">Authorize</Button>
-              }
+              } </div>
+            : <div></div>
+            }
             </div>
           </form>
         }
